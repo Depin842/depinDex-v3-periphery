@@ -2,9 +2,9 @@
 pragma solidity =0.7.6;
 pragma abicoder v2;
 
-import '@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol';
-import '@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol';
-import '@uniswap/v3-core/contracts/libraries/TickMath.sol';
+import 'depin-dex-v3-core/contracts/interfaces/IDepinDexFactory.sol';
+import 'depin-dex-v3-core/contracts/interfaces/callback/IDepinDexMintCallback.sol';
+import 'depin-dex-v3-core/contracts/libraries/TickMath.sol';
 
 import '../libraries/PoolAddress.sol';
 import '../libraries/CallbackValidation.sol';
@@ -14,15 +14,15 @@ import './PeripheryPayments.sol';
 import './PeripheryImmutableState.sol';
 
 /// @title Liquidity management functions
-/// @notice Internal functions for safely managing liquidity in Uniswap V3
-abstract contract LiquidityManagement is IUniswapV3MintCallback, PeripheryImmutableState, PeripheryPayments {
+/// @notice Internal functions for safely managing liquidity in DepinDex
+abstract contract LiquidityManagement is IDepinDexMintCallback, PeripheryImmutableState, PeripheryPayments {
     struct MintCallbackData {
         PoolAddress.PoolKey poolKey;
         address payer;
     }
 
-    /// @inheritdoc IUniswapV3MintCallback
-    function uniswapV3MintCallback(
+    /// @inheritdoc IDepinDexMintCallback
+    function depinDexMintCallback(
         uint256 amount0Owed,
         uint256 amount1Owed,
         bytes calldata data
@@ -54,13 +54,13 @@ abstract contract LiquidityManagement is IUniswapV3MintCallback, PeripheryImmuta
             uint128 liquidity,
             uint256 amount0,
             uint256 amount1,
-            IUniswapV3Pool pool
+            IDepinDexPool pool
         )
     {
         PoolAddress.PoolKey memory poolKey =
             PoolAddress.PoolKey({token0: params.token0, token1: params.token1, fee: params.fee});
 
-        pool = IUniswapV3Pool(PoolAddress.computeAddress(factory, poolKey));
+        pool = IDepinDexPool(PoolAddress.computeAddress(factory, poolKey));
 
         // compute the liquidity amount
         {

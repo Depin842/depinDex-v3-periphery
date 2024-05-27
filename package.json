@@ -1,20 +1,18 @@
 {
-  "name": "@uniswap/v3-periphery",
-  "description": "🎚 Peripheral smart contracts for interacting with Uniswap V3",
+  "name": "depin-dex-v3-periphery",
+  "description": "Peripheral smart contracts for interacting with DepinDex V3",
   "license": "GPL-2.0-or-later",
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.4.4",
-  "homepage": "https://uniswap.org",
+  "version": "1.0.0",
   "keywords": [
-    "uniswap",
     "periphery",
     "v3"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Uniswap/uniswap-v3-periphery"
+    "url": "https://github.com/Depin842/depinDex-v3-periphery.git"
   },
   "files": [
     "contracts/base",
@@ -31,9 +29,9 @@
   "dependencies": {
     "@openzeppelin/contracts": "3.4.2-solc-0.7",
     "@uniswap/lib": "^4.0.1-alpha",
-    "@uniswap/v2-core": "^1.0.1",
-    "@uniswap/v3-core": "^1.0.0",
-    "base64-sol": "1.0.1"
+    "base64-sol": "1.0.1",
+    "depin-dex-v2-core": "^1.0.0",
+    "depin-dex-v3-core": "^1.0.0"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
